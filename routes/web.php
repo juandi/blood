@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/{page}', 'SiteController@showWhiteBrand')->name('white');
+Route::get('/{slugPage}/{page}', 'SiteController@showWhiteBrand')->name('white');

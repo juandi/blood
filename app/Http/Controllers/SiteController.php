@@ -33,9 +33,13 @@ class SiteController extends Controller
             return WhiteBrandHelper::getWebCams($page);
         });
         return view('whitebrand.index', [
-            'title'   => $slugPage,
-            'cssPath' => $this->affiliates->css_path,
-            'list'    => $list
+            'title'     => $this->affiliates->name,
+            'slugPage'  => $slugPage,
+            'cssPath'   => $this->affiliates->css_path,
+            'natCum'    => $this->affiliates->nat_cumloader,
+            'natWebcam' => $this->affiliates->nat_webcam,
+            'list'      => $list,
+            'page'      => $page,
         ]);
     }
 }

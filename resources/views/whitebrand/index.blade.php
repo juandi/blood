@@ -3,11 +3,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title></title>
+    <title>{{$title}}</title>
 
     <!-- Star CSS and Javascript -->
-    <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen,projection">
-    <link rel="stylesheet" href="css/{{$cssPath}}/css/estilos.css" type="text/css" media="screen,projection">
+    <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen,projection">
+    <link rel="stylesheet" href="/css/{{$cssPath}}/css/estilos.css" type="text/css" media="screen,projection">
     <!-- end CSS and Javascript -->
 </head>
 
@@ -15,7 +15,7 @@
 
 <div class="box-header">
     <div class="header">
-        <h1 class="logo-sitio"><a href="#" title="Babosas.biz">Babosas.biz</a></h1>
+        <h1 class="logo-sitio"><a href="#" title="{{$title}}">{{$title}}</a></h1>
         <div class="tit-webcams">Webcams</div>
 
         <div class="logo-cum"><a href="#" title="Cumlouder.com">Cumlouder.com</a></div>
@@ -34,27 +34,17 @@
 <div class="listado-chicas">
 
     @foreach($list as $key => $item)
-        @if($key>0 && $key%12==0)
-            <div class="chica chica-grande">
-                <a class="link" data-href="http://webcams.cumlouder.com/joinmb/cumlouder/{{$item["wbmerPermalink"]}}/" title="">
-                    <span class="thumb"><img src="//w0.imgcm.com/modelos/{{$item["wbmerThumb4"]}}" width="357" height="307" alt="" title="" /></span>
-                    <span class="nombre-chica"> <span class="ico-online"></span> Nombre de la chica</span>
-                    <span id="favorito" class="ico-favorito" ></span>
-                </a>
-            </div>
+        @if($key<5)
+            @component('whitebrand.snippets.girl', ['girl' => $item, 'size' => "large", 'key' => $key, 'natWebcam' => $natWebcam] )
+            @endcomponent
         @else
-            <div class="chica">
-                <a class="link" data-href="http://webcams.cumlouder.com/joinmb/cumlouder/{{$item["wbmerPermalink"]}}/" title="">
-                    <span class="thumb"><img src="//w0.imgcm.com/modelos/{{$item["wbmerThumb1"]}}" width="175" height="150" alt="" title="" /></span>
-                    <span class="nombre-chica"> <span class="ico-online"></span> {{$item["wbmerNick"]}}</span>
-                    <span id="favorito" class="ico-favorito" ></span>
-                </a>
-            </div>
+            @component('whitebrand.snippets.girl', ['girl' => $item, 'size' => "small", 'key' => $key-5, 'natWebcam' => $natWebcam])
+            @endcomponent
         @endif
     @endforeach
     <div class="clear"></div>
 
-    <a class="btn-mas-modelos" href="#" title="Mostrar más modelos">Siguiente Página</a>
+    <a class="btn-mas-modelos" href="/{{$slugPage}}/{{$page+1}}?nats={{$natCum}}" title="Mostrar más modelos">Siguiente Página</a>
 
 </div>
 <!-- termina LISTADO DE CHICAS -->
