@@ -30,7 +30,7 @@ class BloodHelper
 
         $t = random_int(1, 50);
 //            $t=random_int(1, 1);
-//        echo $t;
+        echo $t ." fields <br>";
         $grounds["nItems"] = $t;
         for ($i = 0; $i < $t; $i++) {
             $n = random_int(3, 20);

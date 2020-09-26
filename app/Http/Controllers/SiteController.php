@@ -23,7 +23,7 @@ class SiteController extends Controller
     public function index()
     {
         $ground = BloodHelper::createGround();
-        echo "fields<br>";
+
         foreach ($ground["item"] as $field) {
             BloodHelper::getBestFieldArea($field);
         }
