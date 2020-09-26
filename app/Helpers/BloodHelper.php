@@ -30,7 +30,7 @@ class BloodHelper
 
         $t = random_int(1, 50);
 //            $t=random_int(1, 1);
-        echo $t . "<br>";
+//        echo $t;
         $grounds["nItems"] = $t;
         for ($i = 0; $i < $t; $i++) {
             $n = random_int(3, 20);
@@ -38,12 +38,12 @@ class BloodHelper
             $m = random_int(0, 5);
 //                $m=random_int(0, 2);
 
-            echo $n . " " . $m . "<br>";
+//            echo "<br>".$n . " ... " . $m . "<br>";
             $grounds["item"][$i]["field"]["nSlots"] = $n;
             $grounds["item"][$i]["field"]["pieces"] = $m;
             for ($z = 0; $z < $n; $z++) {
                 $block = random_int(0, 50);
-                echo $block . " ";
+//                echo $block . " ";
                 $grounds["item"][$i]["field"]["slots"][$z] = $block;
             }
         }
@@ -53,15 +53,19 @@ class BloodHelper
     public static function getBestFieldArea($field)
     {
         echo "**********************************************<br>";
+
         $pieces = $field["field"]["pieces"];
+        echo "<br>".$field["field"]["nSlots"]." " .$pieces."<br>";
+        foreach ($field["field"]["slots"] as $slot){
+            echo $slot." ";
+        }
         $initArea = self::getFieldArea($field["field"]["slots"]);
-        echo "initArea: " . $initArea . "<br>";
         $testAreas = [];
         if ($pieces > 0) {
             $testAreas = self::test2($pieces, $field["field"]["slots"]);
 
         }
-        echo "Init area:" . $initArea . "<br>";
+        echo "<br>Init area:" . $initArea . "<br>";
         $maxArea = 0;
         $piecesUsed = 0;
         $pushedIn = 0;
@@ -80,9 +84,9 @@ class BloodHelper
         }
         echo "**********************************************<br>";
         if ($maxArea > $initArea) {
-            echo "Max area result: " . $maxArea . ". With " . $piecesUsed . " pieces in " . $pushedIn;
+            echo "Max area result: " . $maxArea . ". With " . $piecesUsed . " pieces in " . $pushedIn."<br>";
         } else {
-            echo "Max area result is initial area: " . $initArea;
+            echo "Max area result is initial area: " . $initArea."<br>";
         }
     }
 
@@ -106,7 +110,7 @@ class BloodHelper
 //                $ctc=(intval($cl)>=intval($cr))?$cl:$cr;
                 $areaSlot = $ctc - $cs;
                 $areaSlot = ($areaSlot < 0) ? 0 : $areaSlot;
-                echo "item: " . $position . "cl:" . $cl . " - cr" . $cr . " - cs:" . $cs . " - ctc:" . $ctc . " area: " . $areaSlot . " <br>";
+//                echo "item: " . $position . "cl:" . $cl . " - cr" . $cr . " - cs:" . $cs . " - ctc:" . $ctc . " area: " . $areaSlot . " <br>";
                 $totalArea += $areaSlot;
             }
         }
