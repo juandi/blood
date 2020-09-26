@@ -101,13 +101,14 @@ class BloodHelper
                 } else {
                     $ctc = $cl;
                 }
+                /**  TODO: tener en cuenta la pared izquierda de posiciones inferiores a la anterior para detectar los "valles largos". $lastWall se reinicia cuando encuentra una pared mayor o la última de la serie */
+
 //                $ctc=(intval($cl)>=intval($cr))?$cl:$cr;
                 $areaSlot = $ctc - $cs;
                 $areaSlot = ($areaSlot < 0) ? 0 : $areaSlot;
                 echo "item: " . $position . "cl:" . $cl . " - cr" . $cr . " - cs:" . $cs . " - ctc:" . $ctc . " area: " . $areaSlot . " <br>";
                 $totalArea += $areaSlot;
             }
-//            echo "<b>".$totalArea."</b></br>";
         }
         return $totalArea;
     }
