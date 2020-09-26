@@ -11,8 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/{slugPage}/{page}', 'SiteController@showWhiteBrand')->name('white');
+Route::get('/', 'SiteController@index');

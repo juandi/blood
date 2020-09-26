@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\WhiteBrandHelper;
+use App\Helpers\BloodHelper;
 use App\WhiteBrand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -20,26 +20,14 @@ class SiteController extends Controller
 
     }
 
-    /**
-     * @param string $slugPage
-     * @param int $page
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showWhiteBrand(string $slugPage, int $page = 1, Request $request)
+    public function index()
     {
-        $this->affiliates = $this->affiliates::where('name', strtolower($slugPage))->first();
-        $list = Cache::remember('list', 15, function () use ($page) {
-            return WhiteBrandHelper::getWebCams($page);
-        });
-        return view('whitebrand.index', [
-            'title'     => $this->affiliates->name,
-            'slugPage'  => $slugPage,
-            'cssPath'   => $this->affiliates->css_path,
-            'natCum'    => $this->affiliates->nat_cumloader,
-            'natWebcam' => $this->affiliates->nat_webcam,
-            'list'      => $list,
-            'page'      => $page,
-        ]);
+        $ground = BloodHelper::createGround();
+        echo "fields<br>";
+        foreach ($ground["item"] as $field) {
+            BloodHelper::getBestFieldArea($field);
+        }
     }
+
+
 }
